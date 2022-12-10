@@ -1,5 +1,6 @@
 import {Module} from '../core/module'
-import { random } from '../utils';
+import { Menu } from '../core/menu'
+import { random } from '../utils'
 import AUDIO1 from '../assets/1.mp3'
 import AUDIO2 from '../assets/2.mp3'
 import AUDIO3 from '../assets/3.mp3'
@@ -17,6 +18,9 @@ export class SoundModule extends Module {
             
             const audio = new Audio(audioArr[randomSoundNumber])
             audio.play()
+
+            const contextMenu = new Menu('.menu')
+            contextMenu.close()
 
         })
 
