@@ -21,9 +21,8 @@ export class Menu {
 		  if (event.target.offsetParent !== this.el) {
 			this.close();
 		 }
-	  })
+	  });
 	}
- 
  
 	open(left, top) {
 	 this.el.classList.add('open');
