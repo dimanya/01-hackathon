@@ -34,8 +34,8 @@ export class Menu {
 	 this.el.classList.remove('open');
 	}
  
-	add() {
-	  throw new Error(`"add" method should be implemented in Menu"`);
+	add(item) {
+		this.el.innerHTML += item;
 	}
  }
  
