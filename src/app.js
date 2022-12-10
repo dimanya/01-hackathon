@@ -1,24 +1,23 @@
-import './styles.css'
+import "./styles.css";
 
-import { Menu } from './core/menu'
-import { Module } from './core/module'
+import { Menu } from "./core/menu";
+import { Module } from "./core/module";
+import { ClicksModule } from "./modules/clicks.module";
 
-const contextMenu = new Menu('.menu');
+const contextMenu = new Menu(".menu");
 
-let module = new Module('clicks', 'Считать клики за 3 секунды');
+let module = new ClicksModule("clicks", "Считать клики за 3 секунды");
+contextMenu.add(module.toHTML());
+module.trigger();
+
+module = new Module("figure", "Создать фигуру");
 contextMenu.add(module.toHTML());
 
-module = new Module('figure', 'Создать фигуру');
+module = new Module("color", "Поменять цвет");
 contextMenu.add(module.toHTML());
 
-module = new Module('color', 'Поменять цвет');
+module = new Module("message", "Вызвать сообщение");
 contextMenu.add(module.toHTML());
 
-module = new Module('message', 'Вызвать сообщение');
+module = new Module("timer", "Таймер");
 contextMenu.add(module.toHTML());
-
-module = new Module('timer', 'Таймер');
-contextMenu.add(module.toHTML());
-
-
-

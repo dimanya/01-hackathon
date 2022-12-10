@@ -1,23 +1,18 @@
-import {Module} from '../core/module'
+import { Module } from "../core/module";
 
+// функция для счета количества кликов пользователя
+let clickCount = 0;
 export class ClicksModule extends Module {
   trigger() {
-    
+    resetTimer();
+    document.addEventListener("click", function () {
+      // счетчик кликов
+      clickCount++;
+    });
   }
 }
-// функция для счета количества кликов пользователя
-function startClickTracking() {
-  // счетчик кликов
-  let clickCount = 0;
-
-  // начинаем считать клики
-  document.addEventListener('click', function() {
-    clickCount++;
-  });
-
-  // ждем 5 секунд
-  setTimeout(function() {
-    // выводим статистику о количестве кликов
-    console.log(`Количество кликов: ${clickCount}`);
-  }, 5000);
+function resetTimer() {
+  console.log(`Количество кликов: ${clickCount}`);
+  clickCount = 0;
+  setTimeout(resetTimer, 3000);
 }
