@@ -1,11 +1,16 @@
 import './styles.css'
-
 import { Menu } from './core/menu'
-import { Module } from './core/module'
+import { SoundModule } from './modules/sound.module'
 
-const contextMenu = new Menu('.menu');
+const contextMenu = new Menu('.menu')
 
-let module = new Module('clicks', 'Считать клики за 3 секунды');
+const soundModule = new SoundModule('sounds', 'Случайные звуки')
+contextMenu.add(soundModule.toHTML())
+/* import { Module } from './core/module'
+
+; */
+
+/* let module = new Module('clicks', 'Считать клики за 3 секунды');
 contextMenu.add(module.toHTML());
 
 module = new Module('figure', 'Создать фигуру');
@@ -18,7 +23,7 @@ module = new Module('message', 'Вызвать сообщение');
 contextMenu.add(module.toHTML());
 
 module = new Module('timer', 'Таймер');
-contextMenu.add(module.toHTML());
+contextMenu.add(module.toHTML()); */
 
 
 
