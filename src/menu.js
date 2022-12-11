@@ -41,21 +41,19 @@ export class ContextMenu extends Menu {
 
 let newMenu = new ContextMenu(".menu");
 
-const myClicksModule = new ClicksModule("clicks", "Считать клики за 3 секунды");
-newMenu.add(myClicksModule.toHTML());
 const clickHeader = document.createElement("div");
-clickHeader.hidden= true;
+clickHeader.hidden = true;
 clickHeader.style.width = "200px";
 clickHeader.style.height = "50px";
 clickHeader.style.background = "black";
 clickHeader.style.border = "1px solid black";
 clickHeader.style.borderRadius = "10px";
 clickHeader.style.color = "white";
-clickHeader.style.textAlign = 'center';
+clickHeader.style.textAlign = "center";
 document.body.append(clickHeader);
-myClicksModule.displayElement = clickHeader;
 
-//myClicksModule.displayElement=document.querySelector(".clickfick");
+let module = new Module("clicks", "Считать клики за 5 секунды");
+newMenu.add(module.toHTML());
 
 module = new Module("figure", "Создать фигуру");
 newMenu.add(module.toHTML());
@@ -71,7 +69,6 @@ newMenu.add(module.toHTML());
 
 const bodyElement = document.body;
 bodyElement.addEventListener("click", (event) => {
-	newMenu.close();
   if (event.target.classList.contains("menu-item")) {
     let callModule;
     let eventType = event.target.dataset.type;
@@ -81,13 +78,16 @@ bodyElement.addEventListener("click", (event) => {
       callModule = new BackgroundModule(eventType, eventText);
       callModule.trigger(bodyElement);
     } else if (eventType === "clicks") {
-      console.log("clicks");
-      myClicksModule.trigger(bodyElement);
+      console.log("click");
+      callModule = new ClicksModule(eventType, eventText);
+      callModule.trigger(bodyElement);
+      callModule.displayElement = clickHeader;
     } //else if (eventType === 'timer') {
     //	console.log(bodyElement);
     //	callModule = new TimerModule(eventType, eventText);
     //	callModule.trigger(bodyElement);
     //}
+
+    newMenu.close();
   }
 });
-
