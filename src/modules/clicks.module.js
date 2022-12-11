@@ -1,18 +1,28 @@
 import { Module } from "../core/module";
 
 // функция для счета количества кликов пользователя
-let clickCount = 0;
 export class ClicksModule extends Module {
+  constructor(type, text) {
+    super(type, text);
+    this.clickCount = 0;
+    this.displayElement = null;
+  }
   trigger() {
-    resetTimer();
+    let self = this;
+    self.periodicCounterReset(self);
     document.addEventListener("click", function () {
-      // счетчик кликов
-      clickCount++;
+      self.clickCount++;
     });
   }
-}
-function resetTimer() {
-  console.log(`Количество кликов: ${clickCount}`);
-  clickCount = 0;
-  setTimeout(resetTimer, 3000);
+
+  periodicCounterReset(self) {
+    console.log(`Количество кликов: ${self.clickCount}`);
+    if (self.displayElement != null) {
+      self.displayElement.textContent = self.clickCount;
+    }
+    self.clickCount = 0;
+    setTimeout(function () {
+      self.periodicCounterReset(self);
+    }, 3000);
+  }
 }

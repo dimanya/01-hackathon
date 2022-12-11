@@ -8,6 +8,7 @@ const contextMenu = new Menu(".menu");
 
 let module = new ClicksModule("clicks", "Считать клики за 3 секунды");
 contextMenu.add(module.toHTML());
+module.displayElement = document.getElementById("ClickCount");
 module.trigger();
 
 module = new Module("figure", "Создать фигуру");
