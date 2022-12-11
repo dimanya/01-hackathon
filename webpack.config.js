@@ -25,7 +25,8 @@ module.exports = (env, argv) => {
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: filename('js'),
-      clean: true
+      clean: true,
+      assetModuleFilename: 'assets/[hash][ext][query]'
     },
     resolve: {
       extensions: ['.js'],
@@ -62,6 +63,10 @@ module.exports = (env, argv) => {
               presets: ['@babel/preset-env']
             }
           }
+        },
+        {
+          test: /\.(png|svg|jpg|jpeg|gif|ogg|mp3|wav)$/i,
+          type: 'asset/resource',
         }
       ],
     }
