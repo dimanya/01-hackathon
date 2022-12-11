@@ -1,6 +1,7 @@
-import {Menu} from './core/menu';
+import { Menu } from './core/menu';
 import { Module } from './core/module';
 import { BackgroundModule } from './modules/background.module';
+import { ClicksModule } from './modules/clicks.module';
 
 export class ContextMenu extends Menu {
 	constructor(selector) {
@@ -40,7 +41,7 @@ export class ContextMenu extends Menu {
 
 let newMenu = new ContextMenu('.menu');
 
-let module = new Module('clicks', 'Считать клики за 3 секунды');
+let module = new Module('clicks', 'Считать клики за 5 секунды');
 newMenu.add(module.toHTML());
 
 module = new Module('figure', 'Создать фигуру');
@@ -58,9 +59,23 @@ newMenu.add(module.toHTML());
 const bodyElement = document.body;
 bodyElement.addEventListener('click', event => {
 	if (event.target.classList.contains('menu-item')) {
-	 if (event.target.dataset.type === 'background') {
-			let callModule = new BackgroundModule(event.target.dataset.type, event.target.textContent);
+
+		let callModule;
+		let eventType = event.target.dataset.type;
+		let eventText = event.target.textContent;
+
+		if (eventType === 'background') {
+			callModule = new BackgroundModule(eventType, eventText);
 			callModule.trigger(bodyElement);
-		}
+		} else if (eventType === 'clicks') {
+			console.log('clicks');
+			callModule = new ClicksModule(eventType, eventText);
+			callModule.trigger(bodyElement);
+		} //else if (eventType === 'timer') {
+		//	console.log(bodyElement);
+		//	callModule = new TimerModule(eventType, eventText);
+		//	callModule.trigger(bodyElement);
+		//}
+	
 	}
 });
