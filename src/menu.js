@@ -2,6 +2,7 @@ import { Menu } from './core/menu';
 import { Module } from './core/module';
 import { BackgroundModule } from './modules/background.module';
 import { ClicksModule } from './modules/clicks.module';
+import { TimerModule } from './modules/timer.module';
 
 export class ContextMenu extends Menu {
 	constructor(selector) {
@@ -56,6 +57,7 @@ newMenu.add(module.toHTML());
 module = new Module('timer', 'Таймер');
 newMenu.add(module.toHTML());
 
+
 const bodyElement = document.body;
 bodyElement.addEventListener('click', event => {
 	if (event.target.classList.contains('menu-item')) {
@@ -71,11 +73,12 @@ bodyElement.addEventListener('click', event => {
 			console.log('clicks');
 			callModule = new ClicksModule(eventType, eventText);
 			callModule.trigger(bodyElement);
-		} //else if (eventType === 'timer') {
-		//	console.log(bodyElement);
-		//	callModule = new TimerModule(eventType, eventText);
-		//	callModule.trigger(bodyElement);
-		//}
+		} else if (eventType === 'timer') {
+			callModule = new TimerModule(eventType, eventText);
+			callModule.trigger(bodyElement);
+			
+			
+		}
 	
 	}
 });
