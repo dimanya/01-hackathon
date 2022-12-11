@@ -5,7 +5,7 @@ import { Module } from './core/module'
 import { TimerModule } from './modules/timer.modules'
 
 const contextMenu = new Menu('.menu');
-// const timerModule = new TimerModule();
+const timerModule = new TimerModule('');
 // contextMenu.add(timerModule.toHTML());
 
 let module = new Module('clicks', 'Считать клики за 3 секунды');
