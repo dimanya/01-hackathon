@@ -25,8 +25,10 @@ export class ClicksModule extends Module {
     if (self.displayElement != null) {
       if (self.clickCount > 0) {
         self.displayElement.textContent = "Вы кликнули " +self.clickCount + " раз за три секунды";
+        self.displayElement.hidden = false;
       } else {
         self.displayElement.textContent = "";
+         self.displayElement.hidden = true;
       }
     }
     self.clickCount = 0;

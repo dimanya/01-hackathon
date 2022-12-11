@@ -44,6 +44,14 @@ let newMenu = new ContextMenu(".menu");
 const myClicksModule = new ClicksModule("clicks", "Считать клики за 3 секунды");
 newMenu.add(myClicksModule.toHTML());
 const clickHeader = document.createElement("div");
+clickHeader.hidden= true;
+clickHeader.style.width = "200px";
+clickHeader.style.height = "50px";
+clickHeader.style.background = "black";
+clickHeader.style.border = "1px solid black";
+clickHeader.style.borderRadius = "10px";
+clickHeader.style.color = "white";
+clickHeader.style.textAlign = 'center';
 document.body.append(clickHeader);
 myClicksModule.displayElement = clickHeader;
 
